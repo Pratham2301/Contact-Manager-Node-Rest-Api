@@ -5,11 +5,9 @@
 <img src="assets/nodejslogo.png"  width="50" height="50">
 
 <br>
-<br>
 
 PRs and issues are welcome!
 
-<br>
 <br>
 
 # Getting started
