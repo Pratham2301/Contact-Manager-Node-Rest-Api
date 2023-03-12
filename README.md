@@ -6,7 +6,6 @@
 
 <br>
 
-PRs and issues are welcome!
 
 <br>
 
