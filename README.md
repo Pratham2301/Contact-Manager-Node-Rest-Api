@@ -1,13 +1,11 @@
-# ![Node/Express/Mongoose Example App](assets/nodejslogo.png)
-
-
-<br>
-<br>
-
 > ###  Contact Manager Rest API (Node.js + Express + MongoDB) 
 
 <br>
 
+<img src="assets/nodejslogo.png"  width="50" height="50">
+
+<br>
+<br>
 
 PRs and issues are welcome!
 
