@@ -13,15 +13,15 @@ const {
 
 
 
-router.get('/', getAllContacts);
+router.get("/", getAllContacts);
 
-router.post('/', addContact);
+router.post("/", addContact);
 
-router.get('/:id', getSpecificContact);
+router.get("/:id", getSpecificContact);
 
-router.put('/:id', updateContact);
+router.put("/:id", updateContact);
 
-router.delete('/:id', deleteContact);
+router.delete("/:id", deleteContact);
 
 
 

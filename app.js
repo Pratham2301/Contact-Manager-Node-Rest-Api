@@ -11,11 +11,10 @@ connectDB();
 
 app.use(express.json());
 
-app.get('/', (req, res) => {
-    res.send("Welcome to Contact Manager API");
-})
-
+app.get('/', (req, res) => { res.send("Welcome to Contact Manager API");})
 app.use('/api/contact', require('./routes/contactRoutes'));
+
+
 app.use(errorHandler);
 
 

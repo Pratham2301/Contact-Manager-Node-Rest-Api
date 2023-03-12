@@ -19,18 +19,25 @@ const addContact = asyncHandler(async (req, res) => {
 
     if (!name || !email || !phone) {
         throw new Error("Invalid Data");
-        // return res.send("Invalid Data");
     }
 
-    const userData = await Contacts.create({ name, email, phone });
-    res.send(userData);
+    const contact = await Contacts.create({ name, email, phone });
+    res.json(contact);
 
 });
 
 //////////////////////////////////////////////////////////////////
 
 const getSpecificContact = asyncHandler(async (req, res) => {
-    res.send("get specific contact");
+    // console.log(req.params.id);
+
+    const contact = await Contacts.findById(req.params.id);
+
+    if(!contact){
+        throw new Error("Contact Not Found");
+    }
+
+    res.json(contact);
 });
 
 //////////////////////////////////////////////////////////////////
