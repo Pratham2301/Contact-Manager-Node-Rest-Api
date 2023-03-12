@@ -1,4 +1,4 @@
-const Contacts = require('../models/Contacts');
+const Contacts = require('../models/contactsModel');
 const asyncHandler = require("express-async-handler");
 
 
