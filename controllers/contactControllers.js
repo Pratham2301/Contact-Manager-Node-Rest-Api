@@ -7,7 +7,7 @@ const asyncHandler = require("express-async-handler");
 
 const getAllContacts = asyncHandler(async (req, res) => {
 
-    data = await Contacts.find();
+    let data = await Contacts.find();
     res.send(data);
 
 });
