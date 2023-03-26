@@ -101,7 +101,7 @@ const usersignup = asyncHandler(async (req, res) => {
 /////////////////////////////////////////////////////////////////////////////
 
 const getCurrentUser = asyncHandler(async (req, res) => {
-    res.send("current...");
+    res.json(req.user);
 });
 
 
