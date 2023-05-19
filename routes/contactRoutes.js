@@ -9,10 +9,13 @@ const {
     deleteContact
 } = require('../controllers/contactControllers');
 
+const validateToken = require("../middlewares/validateTokenHandler");
+
 
 /////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////
 
+router.use(validateToken);
 
 router.get("/", getAllContacts);
 

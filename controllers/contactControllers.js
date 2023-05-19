@@ -11,8 +11,9 @@ const asyncHandler = require("express-async-handler");
 
 const getAllContacts = asyncHandler(async (req, res) => {
 
-    let data = await Contacts.find();
-    res.send(data);
+    let data = await Contacts.find({ user_id: req.user._id });
+
+    res.status(200).json(data);
 
 });
 
@@ -31,8 +32,17 @@ const addContact = asyncHandler(async (req, res) => {
         throw new Error("Invalid Data");
     }
 
-    const contact = await Contacts.create({ name, email, phone });
-    res.json(contact);
+
+    console.log("id is : ", req.user)
+
+    const contact = await Contacts.create({
+        name: name,
+        email: email,
+        phone: phone,
+        user_id: req.user._id,
+    });
+
+    res.status(200).json(contact);
 
 });
 
@@ -48,6 +58,11 @@ const getSpecificContact = asyncHandler(async (req, res) => {
     // console.log(req.params.id);
 
     const contact = await Contacts.findById(req.params.id);
+
+    if (contact.user_id.toString() !== req.user._id) {
+        res.status(403);
+        throw new Error("User don't have permission to view other user's contacts");
+    }
 
     if (!contact) {
         throw new Error("Contact Not Found");
@@ -72,6 +87,11 @@ const updateContact = asyncHandler(async (req, res) => {
 
     if (!contact) {
         throw new Error("Contact Not Found");
+    }
+
+    if (contact.user_id.toString() !== req.user._id) {
+        res.status(403);
+        throw new Error("User don't have permission to edit other user's contacts");
     }
 
     const updatedContact = await Contacts.findByIdAndUpdate(
@@ -103,6 +123,11 @@ const deleteContact = asyncHandler(async (req, res) => {
 
     if (!contact) {
         throw new Error("Contact Not Found");
+    }
+
+    if (contact.user_id.toString() !== req.user._id) {
+        res.status(403);
+        throw new Error("User don't have permission to delete other user's contacts");
     }
 
     const deletedContact = await Contacts.deleteOne({ _id: req.params.id });
