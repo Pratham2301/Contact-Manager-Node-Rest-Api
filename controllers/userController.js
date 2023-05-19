@@ -10,12 +10,18 @@ dotenv.config();
 
 
 function generateAccessToken(data) {
-    return jwt.sign(data, process.env.TOKEN_SECRET, { expiresIn: '1800s' });
+    return jwt.sign(
+        data,
+        process.env.TOKEN_SECRET,
+        { expiresIn: '1800s' }
+    );
 }
 
 
 /////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////
+
+
 
 const userLogin = asyncHandler(async (req, res) => {
 
@@ -48,11 +54,13 @@ const userLogin = asyncHandler(async (req, res) => {
     }
 
     const token = generateAccessToken(data);
+
     res.status(200).json({ token });
 });
 
 /////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////
+
 
 const usersignup = asyncHandler(async (req, res) => {
     const { name, email, password } = req.body;
@@ -101,7 +109,8 @@ const usersignup = asyncHandler(async (req, res) => {
 /////////////////////////////////////////////////////////////////////////////
 
 const getCurrentUser = asyncHandler(async (req, res) => {
-    res.json(req.user);
+    console.log({ "msg : ": req.user })
+    res.json({ "msg : ": req.user });
 });
 
 

@@ -1,10 +1,13 @@
 const express = require('express');
 const router = express.Router();
+
 const {
     userLogin,
     usersignup,
     getCurrentUser
 } = require('../controllers/userController');
+
+const validateToken = require("../middlewares/validateTokenHandler");
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -14,7 +17,7 @@ router.post("/login", userLogin);
 
 router.post("/signup", usersignup);
 
-router.get("/current", getCurrentUser);
+router.get("/current", validateToken, getCurrentUser);
 
 
 /////////////////////////////////////////////////////////////////////////////
